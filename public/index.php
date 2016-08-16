@@ -6,16 +6,7 @@ include("../internal/helpers.php");
 $app = new \Slim\Slim();
 
 $app->get("/", function () {
-    echo "
-    <h2>Available Badges</h2>
-    <ul>
-        <li>/stats/resources</li>
-        <li>/stats/authors</li>
-        <li>/resources/version/{resource}</li>
-        <li>/resources/rating/{resource}</li>
-        <li>/resources/downloads/{resource}</li>
-    </ul>
-    ";
+    include("about.html");
 });
 
 //// Stats
