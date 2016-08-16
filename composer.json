@@ -1,0 +1,16 @@
+{
+  "name": "spiget/badges",
+  "description": "shields.io badges for Spiget",
+  "minimum-stability": "beta",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inventivetalent",
+      "email": "mail@inventivetalent.org"
+    }
+  ],
+  "require": {
+    "badges/poser": "1.2.1",
+    "slim/slim": "2.6.2"
+  }
+}
