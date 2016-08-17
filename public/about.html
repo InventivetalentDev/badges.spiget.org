@@ -20,6 +20,28 @@
     <link rel="stylesheet" href="https://spiget.org/css/navigation.min.css">
     <link rel="stylesheet" href="https://spiget.org/css/sticky-footer.min.css">
 
+    <style>
+        #badgeList {
+            list-style: none;
+        }
+
+        .variable-input.optional-variable {
+            background-color: #e2e2e2;
+        }
+
+        .badge-element-wrapper {
+            padding: 10px;
+        }
+
+        .badge-result-image {
+            padding: 5px;
+        }
+
+        .badge-result-wrapper {
+            padding-top: 5px;
+        }
+    </style>
+
     <!-- OG -->
     <meta property="og:title" content="Badges | Spiget">
     <meta property="og:site_name" content="Spiget Badges">
@@ -47,14 +69,9 @@
 <div class="container">
     <h1 class="page-header">Spiget Badges</h1>
 
-    <h2>Available Badges</h2>
-    <ul>
-        <li>/stats/resources</li>
-        <li>/stats/authors</li>
-        <li>/resources/version/{resource}</li>
-        <li>/resources/rating/{resource}</li>
-        <li>/resources/downloads/{resource}</li>
-    </ul>
+    <h2>Available:</h2>
+    <div id="badgeList">
+    </div>
 </div>
 <footer class="footer">
     <div class="container" style="padding-top:10px;">
@@ -69,4 +86,102 @@
     </div>
 </footer>
 </body>
+
+<script>
+    var badgeRoot = "https://badges.spiget.org";
+    var badges = [
+        {
+            name: "/stats/{label}-{color}-resources",
+            variables: [
+                {
+                    key: "{label}",
+                    def: "Resources",
+                    optional: true
+                },
+                {
+                    key: "{color}",
+                    def: "blue",
+                    optional: true
+                }
+            ]
+        },
+        {
+            name: "/stats/{label}-{color}-authors",
+            variables: [
+                {
+                    key: "{label}",
+                    def: "Authors",
+                    optional: true
+                },
+                {
+                    key: "{color}",
+                    def: "blue",
+                    optional: true
+                }
+            ]
+        },
+        {
+            name: "/resources/version/{label}-{color}-{resource}",
+            variables: [
+                {
+                    key: "{label}",
+                    def: "Version",
+                    optional: true
+                },
+                {
+                    key: "{color}",
+                    def: "blue",
+                    optional: true
+                },
+                {
+                    key: "{resource}",
+                    def: undefined,
+                    placeholder: "Resource ID"
+                }
+            ]
+        },
+        {
+            name: "/resources/rating/{label}-{color}-{resource}",
+            variables: [
+                {
+                    key: "{label}",
+                    def: "Rating",
+                    optional: true
+                },
+                {
+                    key: "{color}",
+                    def: "blue",
+                    optional: true
+                },
+                {
+                    key: "{resource}",
+                    def: undefined,
+                    placeholder: "Resource ID"
+                }
+            ]
+        },
+        {
+            name: "/resources/downloads/{label}-{color}-{resource}",
+            variables: [
+                {
+                    key: "{label}",
+                    def: "Downloads",
+                    optional: true
+                },
+                {
+                    key: "{color}",
+                    def: "blue",
+                    optional: true
+                },
+                {
+                    key: "{resource}",
+                    def: undefined,
+                    placeholder: "Resource ID"
+                }
+            ]
+        }
+    ];
+</script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script async src="badge-loader.js?11"></script>
 </html>
