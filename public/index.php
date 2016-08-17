@@ -35,6 +35,38 @@ $app->get("/stats/:query", function ($query) {
 });
 
 
+//// Status
+
+$app->get("/status/:query", function ($query) {
+    $format = "svg";
+    $label = "Unknown";
+    $color = "blue";
+
+    extractFormat($query, $format);
+    extractOptions($query, $label, $color);
+
+    if ("fetcher" === $query) {
+        $label = "Fetcher";
+    } else if ("fetcher-page" === $query) {
+        $label = "Page";
+    }
+
+    if ($json = getJson("http://api.spiget.org/v2/status")) {
+        if ("fetcher" === $query) {
+            $active = $json["status"]["fetch"]["active"];
+            displayBadge($label, $active ? "active" : "up-to-date", $active ? "orange" : "green", $format);
+        }
+        if ("fetcher-page" === $query) {
+            displayBadge($label, $json["status"]["fetch"]["page"]["index"] . "/" . $json["status"]["fetch"]["page"]["amount"], $color, $format);
+        }
+    } else {
+        // Resource or Version not found
+        displayBadge($label, "unknown", "red", $format);
+    }
+
+});
+
+
 //// Resources
 
 $app->get("/resources/version/:query", function ($query) {
